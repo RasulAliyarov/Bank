@@ -47,7 +47,7 @@ up:
         }
         else
         {
-            umumOdenilecekMebleg = ((mebleg * (18)) / 100) + mebleg;
+            umumOdenilecekMebleg = ((mebleg * 18) / 100) + mebleg;
         }
         Console.WriteLine("Odenilecek mebleg: " + umumOdenilecekMebleg);
         Console.Write("Aylig odenish: " + umumOdenilecekMebleg / 12 + "\n");
