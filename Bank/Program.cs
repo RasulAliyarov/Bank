@@ -39,14 +39,15 @@ up:
         Console.Write("Mebleg daxil edin: "); mebleg = int.Parse(Console.ReadLine());
 
 
-        if (ay >= 12)
+        if (ay <= 12)
         {
-            umumOdenilecekMebleg = ((mebleg * 18) / 100) + mebleg;
+            umumOdenilecekMebleg = ((mebleg * 12) / 100) + mebleg;
+
 
         }
         else
         {
-            umumOdenilecekMebleg = ((mebleg * 12) / 100) + mebleg;
+            umumOdenilecekMebleg = ((mebleg * (18)) / 100) + mebleg;
         }
         Console.WriteLine("Odenilecek mebleg: " + umumOdenilecekMebleg);
         Console.Write("Aylig odenish: " + umumOdenilecekMebleg / 12 + "\n");
@@ -78,6 +79,7 @@ up:
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Krediti tam olaraq bagladiz!!!");
                 Console.ForegroundColor = ConsoleColor.White;
+                goto up;
             }
             Console.WriteLine($"Qalig borc: {umumOdenilecekMebleg}");
             ay = --ay;
