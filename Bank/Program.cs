@@ -100,6 +100,13 @@ if (User == user && Password == password)
 
                     else
                     {
+                         if (umumOdenilecekMebleg == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine($"\n{person} sizin borcunuz yoxdur!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            goto up;
+                        }
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Cox pul verdiz");
                         Console.ForegroundColor = ConsoleColor.White;
