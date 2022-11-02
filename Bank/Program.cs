@@ -1,4 +1,4 @@
-﻿Console.WriteLine("\t\t\t\t----------- Welcome to Abb ------------");
+﻿Console.WriteLine("\t\t----------- Welcome to Abb ------------\n");
 
 
 string user = "admin";
@@ -13,6 +13,7 @@ int umumOdenilecekMebleg = 0;
 int sum = 0;
 int pay = 0;
 int qaliq = umumOdenilecekMebleg;
+bool flaq = true;
 
 up2:
 Console.Write("Username: ");
@@ -22,95 +23,113 @@ string Password = Console.ReadLine();
 
 if (User == user && Password == password)
 {
-    Console.WriteLine($"\t\t\t\t----------- Welcome {person} ------------\n\n");
-up:
-    Console.WriteLine("\nNe etmek isteyirsiniz?");
-    Console.WriteLine("\n1.Kredit goturmek \n2.Kredit odemek \n3.Hesabat");
+    Console.WriteLine($"\t\t----------- Welcome {person} ------------\n");
+    up:
 
-    int choose = int.Parse(Console.ReadLine());
-
-
-    switch (choose)
+    while (flaq)
     {
-        ///Kreditt goturmek
-        case 1:
-            if (choose == 1)
-            {
-                Console.WriteLine("12 ayadek - 12%\n12 aydan cox - 18%\n");
+        Console.WriteLine("\nNe etmek isteyirsiniz?");
+        Console.WriteLine("\n1.Kredit goturmek \n2.Kredit odemek \n3.Hesabat\n4.Cixish");
 
-                Console.Write("Ay daxil edin: "); ay = int.Parse(Console.ReadLine());
+        int choose = int.Parse(Console.ReadLine());
 
-                Console.Write("Mebleg daxil edin: "); mebleg = int.Parse(Console.ReadLine());
-
-
-                if (ay <= 12)
+        switch (choose)
+        {
+            ///Kreditt goturmek
+            case 1:
+                if (choose == 1)
                 {
-                    umumOdenilecekMebleg = ((mebleg * 12) / 100) + mebleg;
+                    Console.WriteLine("\n12 ayadek - 12%\n12 aydan cox - 18%\n");
 
+                    Console.Write("Ay daxil edin: "); ay = int.Parse(Console.ReadLine());
 
-                }
-                else
-                {
-                    umumOdenilecekMebleg = ((mebleg * 18) / 100) + mebleg;
-                }
-                Console.WriteLine("Odenilecek mebleg: " + umumOdenilecekMebleg);
-                Console.Write("Aylig odenish: " + umumOdenilecekMebleg / 12 + "\n");
+                    Console.Write("Mebleg daxil edin: "); mebleg = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("\nRazisiniz?");
-                Console.WriteLine("1.Beli");
-                Console.WriteLine("2.Xeyr");
-
-                int acces = int.Parse(Console.ReadLine());
-                if (acces == 1)
-                    Console.WriteLine("Teshkur edirk");
-                else
-                    Console.WriteLine("Sagolun");
-                goto up;
-            }
-
-            break;
-            ///Kredit odemek
-        case 2:
-            if (choose == 2)
-            {
-            up3:
-                Console.Write("Neche AZN odeyeceksiz? "); pay = int.Parse(Console.ReadLine());
-
-                if (pay <= umumOdenilecekMebleg)
-                {
-                    umumOdenilecekMebleg = umumOdenilecekMebleg - pay;
-                    if (umumOdenilecekMebleg == 0)
+                    if (ay <= 12)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Krediti tam olaraq bagladiz!!!");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        goto up;
+                        umumOdenilecekMebleg = ((mebleg * 12) / 100) + mebleg;
                     }
-                    Console.WriteLine($"Qalig borc: {umumOdenilecekMebleg}");
-                    ay = --ay;
-                }
-
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Cox pul verdiz");
+                    else
+                    {
+                        umumOdenilecekMebleg = ((mebleg * 18) / 100) + mebleg;
+                    }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nOdenilecek mebleg: " + umumOdenilecekMebleg + " AZN");
+                    Console.Write("Aylig odenish: " + umumOdenilecekMebleg / 12 + " AZN\n");
                     Console.ForegroundColor = ConsoleColor.White;
 
-                    goto up3;
-                }
-                goto up;
-            }
-            break;
-            ///Hesabat
-        case 3:
-            if (choose == 3)
-            {
-                Console.WriteLine($"Qalig borc: {umumOdenilecekMebleg} AZN");
-                Console.WriteLine($"Qalan ay: {ay}");
+                    Console.WriteLine("\nRazisiniz?");
+                    Console.WriteLine("1.Beli");
+                    Console.WriteLine("2.Xeyr");
 
-                goto up;
-            }
-            break;
+                    int acces = int.Parse(Console.ReadLine());
+                    if (acces == 1)
+                        Console.WriteLine("Teshkur edirk");
+                    else
+                    {
+                        Console.WriteLine("Sagolun");
+                        umumOdenilecekMebleg = 0;
+                        ay = 0;
+                    }
+                    break;
+                }
+                break;
+            ///Kredit odemek
+            case 2:
+                if (choose == 2)
+                {
+                    up3:
+                    Console.Write("Neche AZN odeyeceksiz? "); pay = int.Parse(Console.ReadLine());
+
+                    if (pay <= umumOdenilecekMebleg)
+                    {
+                        umumOdenilecekMebleg = umumOdenilecekMebleg - pay;
+                        if (umumOdenilecekMebleg == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Krediti tam olaraq bagladiz!!!");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            ay = 0;
+                            goto up;
+                        }
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"Qalig borc: {umumOdenilecekMebleg} AZN");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        ay = --ay;
+                    }
+
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Cox pul verdiz");
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                        goto up3;
+                    }
+                    goto up;
+                }
+                break;
+            ///Hesabat
+            case 3:
+                if (choose == 3)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"Qalig borc: {umumOdenilecekMebleg} AZN");
+                    Console.WriteLine($"Qalan ay: {ay}");
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    goto up;
+                }
+                break;
+            case 4:
+                if (choose == 4)
+                {
+
+
+                    flaq = false;
+                }
+                break;
+        }
     }
 }
 
