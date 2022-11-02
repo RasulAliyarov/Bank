@@ -22,10 +22,10 @@ string Password = Console.ReadLine();
 
 if (User == user && Password == password)
 {
-up:
     Console.WriteLine($"\t\t\t\t----------- Welcome {person} ------------\n\n");
-    Console.WriteLine("Ne etmek isteyirsiniz?");
-    Console.WriteLine("1.Kredit goturmek \n2.Kredit odemek \n3.Hesabat");
+up:
+    Console.WriteLine("\nNe etmek isteyirsiniz?");
+    Console.WriteLine("\n1.Kredit goturmek \n2.Kredit odemek \n3.Hesabat");
 
     //////// Kredit goturmek
     int choose = int.Parse(Console.ReadLine());
@@ -70,15 +70,25 @@ up:
         up3:
         Console.Write("Neche AZN odeyeceksiz? "); pay = int.Parse(Console.ReadLine());
 
-        if (pay < umumOdenilecekMebleg)
+        if (pay <= umumOdenilecekMebleg )
         {
             umumOdenilecekMebleg = umumOdenilecekMebleg - pay;
+            if (umumOdenilecekMebleg == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Krediti tam olaraq bagladiz!!!");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
             Console.WriteLine($"Qalig borc: {umumOdenilecekMebleg}");
             ay = --ay;
         }
+   
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Cox pul verdiz");
+            Console.ForegroundColor = ConsoleColor.White;
+
             goto up3;
         }
         goto up;
